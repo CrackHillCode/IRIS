@@ -1,0 +1,33 @@
+Statement: My name is Alex Mathews.
+Text: Alex Mathews , Prob: 98.00309424784108, Type: person
+Names Detected:
+Name -->Alex Mathews
+Parsing Statements:
+(TOP (S (NP (PRP$ My) (NN name)) (VP (VBZ is) (NP (NNP Alex) (NNP Mathews.)))))
+
+Statement: I was born on June 18th, 1988.
+Text: June 18th , 1988 , Prob: 96.16662162007033, Type: date
+Times Detected:
+Time -->June 18th , 1988
+Parsing Statements:
+(TOP (S (NP (PRP I)) (VP (VBD was) (VP (VBN born) (PP (IN on) (NP (NNP June) (CD 18th,))))) (. 1988.)))
+
+Statement: I am trying to build an Artificial Intelligence Module named Iris, which should be able to listen, interpret and understand what I am saying.
+Text: Iris , Prob: 51.93141925031782, Type: person
+Names Detected:
+Name -->Iris
+Parsing Statements:
+(TOP (S (S (NP (PRP I)) (VP (VBP am) (VP (VBG trying) (S (VP (TO to) (VP (VB build) (NP (DT an) (JJ Artificial) (NNP Intelligence) (NNP Module)))))))) (VP (VP (VBD named) (NP (NP (NNP Iris,)) (SBAR (WHNP (WDT which)) (S (VP (MD should) (VP (VB be) (ADJP (JJ able) (SBAR (S (VP (TO to) (VP (VP (VB listen,) (NP (NN interpret))) (CC and) (VB understand) (VP (WHNP (WP what)))))))))))))) (NP (PRP I)) (VBP am) (VBG saying.))))
+
+Statement: It should be able to respond back as normal human beings do.
+Parsing Statements:
+(TOP (S (NP (PRP It)) (VP (MD should) (VP (VB be) (ADJP (JJ able) (S (VP (TO to) (VP (VB respond) (ADVP (RB back)) (PP (IN as) (NP (JJ normal) (JJ human) (NNS beings))))))))) (. do.)))
+
+Statement: I hope I will be successful in this.
+Parsing Statements:
+(TOP (S (NP (PRP I)) (VP (VBP hope) (SBAR (S (NP (PRP I)) (VP (MD will) (VP (VB be) (ADJP (JJ successful)) (PP (IN in) (NP (NN this.))))))))))
+
+Statement: It should be launched in USA first.
+Parsing Statements:
+(TOP (S (NP (PRP It)) (VP (MD should) (VP (VB be) (VP (VBN launched) (PP (IN in) (NP (NNP USA)))))) (. first.)))
+
