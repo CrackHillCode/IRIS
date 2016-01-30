@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 import in.techutils.tester.nlp.Entity;
 import in.techutils.tester.nlp.MessageCorpus;
-import in.techutils.tester.nlp.lang.treebank.factory.Clause;
+import in.techutils.tester.nlp.lang.treebank.factory.Element;
 import opennlp.tools.cmdline.parser.ParserTool;
 import opennlp.tools.namefind.NameFinderME;
 import opennlp.tools.namefind.TokenNameFinderModel;
@@ -114,12 +114,13 @@ public class TreebankProcessor {
 	public void parseStatement(String statement) {
 		Parse topParses[] = ParserTool.parseLine(statement, parser, 1);
 		for (Parse parse : topParses) {
-
 			for (Parse psc : parse.getChildren()) {
 				processClause(psc);
 			}
 		}
 	}
+
+	//	private  
 
 	private void processClause(Parse clause) {
 		/**
@@ -129,21 +130,24 @@ public class TreebankProcessor {
 		 * - break Predicate
 		 * </pre>
 		 */
+		System.out.print(clause.getType() + ": ");
 		clause.show();
-		System.out.println(clause.getType());
+		System.out.println();
 
 		for (Parse subs : clause.getChildren()) {
 			System.out.print("Subs: ");
 			subs.show();
-			Clause cl = Clause.getClause(subs);
-			if (cl == null) {
-
+			Element el = Element.getElement(subs);
+			if (el != null) {
+				el.getParseObject().show();
 			}
 			System.out.println();
-			//			if (cl != null) {
-			//				System.out.println("Data: " + cl.getClauseParse().getCoveredText());
-			//				System.out.println("Data: " + cl.getClauseParse().getType() + "\n");
-			//			}
+			// if (cl != null) {
+			// System.out.println("Data: " +
+			// cl.getClauseParse().getCoveredText());
+			// System.out.println("Data: " + cl.getClauseParse().getType() +
+			// "\n");
+			// }
 		}
 
 	}

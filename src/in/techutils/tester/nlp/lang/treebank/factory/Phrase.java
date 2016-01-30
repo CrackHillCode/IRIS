@@ -1,9 +1,29 @@
 package in.techutils.tester.nlp.lang.treebank.factory;
 
-import in.techutils.tester.nlp.lang.treebank.phrases.*;
+import in.techutils.tester.nlp.lang.treebank.phrases.ADJP;
+import in.techutils.tester.nlp.lang.treebank.phrases.ADVP;
+import in.techutils.tester.nlp.lang.treebank.phrases.CONJP;
+import in.techutils.tester.nlp.lang.treebank.phrases.FRAG;
+import in.techutils.tester.nlp.lang.treebank.phrases.INTJ;
+import in.techutils.tester.nlp.lang.treebank.phrases.LST;
+import in.techutils.tester.nlp.lang.treebank.phrases.NAC;
+import in.techutils.tester.nlp.lang.treebank.phrases.NP;
+import in.techutils.tester.nlp.lang.treebank.phrases.NX;
+import in.techutils.tester.nlp.lang.treebank.phrases.PP;
+import in.techutils.tester.nlp.lang.treebank.phrases.PRNT;
+import in.techutils.tester.nlp.lang.treebank.phrases.PRT;
+import in.techutils.tester.nlp.lang.treebank.phrases.QP;
+import in.techutils.tester.nlp.lang.treebank.phrases.RRC;
+import in.techutils.tester.nlp.lang.treebank.phrases.UCP;
+import in.techutils.tester.nlp.lang.treebank.phrases.VP;
+import in.techutils.tester.nlp.lang.treebank.phrases.WHADJP;
+import in.techutils.tester.nlp.lang.treebank.phrases.WHAVP;
+import in.techutils.tester.nlp.lang.treebank.phrases.WHNP;
+import in.techutils.tester.nlp.lang.treebank.phrases.WHPP;
+import in.techutils.tester.nlp.lang.treebank.phrases.X;
 import opennlp.tools.parser.Parse;
 
-public abstract class Phrase {
+public abstract class Phrase extends Element {
 	public enum TYPE {
 		ADJP("ADJP"), // - Adjective Phrase.
 		ADVP("ADVP"), // - Adverb Phrase.
@@ -37,103 +57,81 @@ public abstract class Phrase {
 		}
 	}
 
-	public Phrase(Parse phrase) {
-		this.phraseParse = phrase;
-		if (phrase.getChildren() != null && phrase.getChildCount() > 0) {
-			for (Parse px : phrase.getChildren()) {
-
-				/*if (Clause.getClause(wx) != null) {
-					Clause wdx = Clause.getClause(wx);
-					System.out.print("Clause: " + wdx.getClauseParse().getType() + ": ");
-					System.out.println(wdx.getClauseParse().getCoveredText());
-				} else */
-				if (Phrase.getPhrase(px) != null) {
-					Phrase wdx = Phrase.getPhrase(px);
-					System.out.print("-->Phrase: " + wdx.getPhraseParse().getType() + ": ");
-					System.out.println(wdx.getPhraseParse().getCoveredText());
-				} else {
-					Words wdx = Words.getWords(px);
-					System.out.print("-->Word: " + wdx.getWordParse().getType() + ": ");
-					System.out.println(wdx.getWordParse().getCoveredText());
-				}
-			}
-		}
-		System.out.println("--------");
+	public Phrase(Parse p) {
+		super(p);
+		this.setType(ELEM_TYPE.PHRASE);
 	}
 
-	private Parse phraseParse;
-
 	public static Phrase getPhrase(Parse phrase) {
-		phrase.show();
 		Phrase ph = null;
 		try {
 			switch (TYPE.valueOf(phrase.getType())) {
-				case ADJP:
-					ph = new ADJP(phrase);
-					break;
-				case ADVP:
-					ph = new ADVP(phrase);
-					break;
-				case CONJP:
-					ph = new CONJP(phrase);
-					break;
-				case FRAG:
-					ph = new FRAG(phrase);
-					break;
-				case INTJ:
-					ph = new INTJ(phrase);
-					break;
-				case LST:
-					ph = new LST(phrase);
-					break;
-				case NAC:
-					ph = new NAC(phrase);
-					break;
-				case NP:
-					ph = new NP(phrase);
-					break;
-				case NX:
-					ph = new NX(phrase);
-					break;
-				case PP:
-					ph = new PP(phrase);
-					break;
-				case PRN:
-					ph = new PRNT(phrase);
-					break;
-				case PRT:
-					ph = new PRT(phrase);
-					break;
-				case QP:
-					ph = new QP(phrase);
-					break;
-				case RRC:
-					ph = new RRC(phrase);
-					break;
-				case UCP:
-					ph = new UCP(phrase);
-					break;
-				case VP:
-					ph = new VP(phrase);
-					break;
-				case WHADJP:
-					ph = new WHADJP(phrase);
-					break;
-				case WHAVP:
-					ph = new WHAVP(phrase);
-					break;
-				case WHNP:
-					ph = new WHNP(phrase);
-					break;
-				case WHPP:
-					ph = new WHPP(phrase);
-					break;
-				case X:
-					ph = new X(phrase);
-					break;
+			case ADJP:
+				ph = new ADJP(phrase);
+				break;
+			case ADVP:
+				ph = new ADVP(phrase);
+				break;
+			case CONJP:
+				ph = new CONJP(phrase);
+				break;
+			case FRAG:
+				ph = new FRAG(phrase);
+				break;
+			case INTJ:
+				ph = new INTJ(phrase);
+				break;
+			case LST:
+				ph = new LST(phrase);
+				break;
+			case NAC:
+				ph = new NAC(phrase);
+				break;
+			case NP:
+				ph = new NP(phrase);
+				break;
+			case NX:
+				ph = new NX(phrase);
+				break;
+			case PP:
+				ph = new PP(phrase);
+				break;
+			case PRN:
+				ph = new PRNT(phrase);
+				break;
+			case PRT:
+				ph = new PRT(phrase);
+				break;
+			case QP:
+				ph = new QP(phrase);
+				break;
+			case RRC:
+				ph = new RRC(phrase);
+				break;
+			case UCP:
+				ph = new UCP(phrase);
+				break;
+			case VP:
+				ph = new VP(phrase);
+				break;
+			case WHADJP:
+				ph = new WHADJP(phrase);
+				break;
+			case WHAVP:
+				ph = new WHAVP(phrase);
+				break;
+			case WHNP:
+				ph = new WHNP(phrase);
+				break;
+			case WHPP:
+				ph = new WHPP(phrase);
+				break;
+			case X:
+				ph = new X(phrase);
+				break;
 
-				default:
-					break;
+			default:
+				break;
 			}
 		} catch (Exception e) {
 			//			System.out.println("No Such Phrase Found: " + e);
@@ -141,11 +139,4 @@ public abstract class Phrase {
 		return ph;
 	}
 
-	public Parse getPhraseParse() {
-		return phraseParse;
-	}
-
-	public void setPhraseParse(Parse p) {
-		this.phraseParse = p;
-	}
 }
